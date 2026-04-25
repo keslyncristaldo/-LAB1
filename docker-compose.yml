@@ -13,7 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   app:
-    build: .
+    build: lab
     container_name: kanban-api
     restart: always
     depends_on:
