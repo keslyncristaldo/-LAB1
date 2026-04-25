@@ -1,0 +1,17 @@
+name: Meu Primeiro Robô CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  meu-primeiro-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dizer Olá
+        run: echo "Olá, Faculdade! Meu primeiro CI rodou com sucesso."
+
+      - name: Mostrar informações da máquina
+        run: uname -a
