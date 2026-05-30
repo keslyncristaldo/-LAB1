@@ -11,14 +11,14 @@ on:
 
 jobs:
   validacao_e_testes:
-    name: Compilação e Testes Unitários
+    name: Compilação, Testes e Segurança
     runs-on: ubuntu-latest
 
     steps:
       - name: Clonar o repositório
         uses: actions/checkout@v4
 
-      - name: Configurar o Java21
+      - name: Configurar o Java 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
@@ -30,3 +30,11 @@ jobs:
 
       - name: Garantir que compila (Build)
         run: mvn clean package -DskipTests
+
+      - name: Scan de Segurança no Código e Dependências (SCA)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
